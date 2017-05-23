@@ -3,10 +3,11 @@
 namespace Maid\Command;
 
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class Pull extends Command
+class Setup extends Command
 {
     protected function configure()
     {
@@ -14,53 +15,52 @@ class Pull extends Command
             ->setName('setup')
             ->setDescription('Create the needed folders for a PrestaShop project')
             ->setHelp('This command allows you to setup a PrestaShop project.
-            The first param is the database server.
-            The second parameter is the database user.
-            The third parameter is the database password.
-            The fourth parameter is the database name.');
+The first param is the database name.
+The second parameter is the database user.
+The third parameter is the database password.
+The fourth parameter is the database server.');
         $this
-            ->addArgument('dbServer', InputArgument::OPTIONAL, 'The database user', 'localhost')
+            ->addArgument('database', InputArgument::OPTIONAL, 'The database name', 'dbLojaBase')
             ->addArgument('dbUser', InputArgument::OPTIONAL, 'The database user', 'root')
             ->addArgument('dbPassword', InputArgument::OPTIONAL, 'The database password', '123')
-            ->addArgument('database', InputArgument::OPTIONAL, 'The database name', 'dbLojaBase');
+            ->addArgument('dbServer', InputArgument::OPTIONAL, 'The database user', 'localhost');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         try {
             $path = getcwd();
+            $settings = $path . '/config/settings.inc.php';
+            $file = fopen($settings, 'w');
+            fwrite(
+                $file,
+                '<?php
+define(\'_DB_SERVER_\', \''. $input->getArgument('dbServer') . '\');
+define(\'_DB_NAME_\', \''. $input->getArgument('database') . '\');
+define(\'_DB_USER_\', \''. $input->getArgument('dbUser') . '\');
+define(\'_DB_PASSWD_\', \''. $input->getArgument('dbPassword') . '\');
+define(\'_DB_PREFIX_\', \'ps_\');
+define(\'_MYSQL_ENGINE_\', \'InnoDB\');
+define(\'_PS_CACHING_SYSTEM_\', \'CacheMemcache\');
+define(\'_PS_CACHE_ENABLED_\', \'1\');
+define(\'_COOKIE_KEY_\', \'4Egwv45E68Wq0MQpbFrNcLbxvUmzD38KdYZm21U99hHSdAynMVTkiEi6\');
+define(\'_COOKIE_IV_\', \'Wo94HGir\');
+define(\'_PS_CREATION_DATE_\', \'2015-11-04\');
+if (!defined(\'_PS_VERSION_\')) {
+    define(\'_PS_VERSION_\', \'1.6.1.2\');
+}
+define(\'_RIJNDAEL_KEY_\', \'WvwoedNPb32BBEvc78N2zUdVLSGgLe7f\');
+define(\'_RIJNDAEL_IV_\', \'Tx6nAfFTO8QTOSMPqtx1kQ==\');
+'
+            );
+            fclose($file);
+            mkdir($path . '/cache');
+            mkdir($path . '/cache/sandbox');
+            mkdir($path . '/log');
             mkdir($path . '/admin/import');
             mkdir($path . '/config/xml');
             mkdir($path . '/config/xml/themes');
-            mkdir($path . '/cache');
-            mkdir($path . '/img');
-            $settings = fopen('config/settings.inc.php', 'w');
-            fwrite(
-                $settings,
-                '<?php\n
-                   define(\'_DB_SERVER_\', \'localhost\');\n
-                   define(\'_DB_NAME_\', \'dbLojaBase\');\n
-                   define(\'_DB_USER_\', \'root\');\n
-                   define(\'_DB_PASSWD_\', \'123\');\n
-                   define(\'_DB_PREFIX_\', \'ps_\');\n
-                   define(\'_MYSQL_ENGINE_\', \'InnoDB\');\n
-                   define(\'_PS_CACHING_SYSTEM_\', \'CacheMemcache\');\n
-                   define(\'_PS_CACHE_ENABLED_\', \'1\');\n
-                   define(\'_COOKIE_KEY_\', \'4Egwv45E68Wq0MQpbFrNcLbxvUmzD38KdYZm21U99hHSdAynMVTkiEi6\');\n
-                   define(\'_COOKIE_IV_\', \'Wo94HGir\');\n
-                   define(\'_PS_CREATION_DATE_\', \'2015-11-04\');\n
-                   if (!defined(\'_PS_VERSION_\')) {\n
-                       define(\'_PS_VERSION_\', \'1.6.1.2\');\n
-                   }\n
-                   define(\'_RIJNDAEL_KEY_\', \'WvwoedNPb32BBEvc78N2zUdVLSGgLe7f\');\n
-                   define(\'_RIJNDAEL_IV_\', \'Tx6nAfFTO8QTOSMPqtx1kQ==\');\n'
-            );
-            fclose($settings);
-            $iterator = new RecursiveIteratorIterator(new RecursiveDirectoryIterator(getcwd()));
-            foreach ($iterator as $item) {
-                    chmod($item, 777);
-            }
-            $output->writeln('Setup finished!');
+            $output->writeln('Setup finished! Happy coding!');
         } catch (\Exception $e) {
             $output->writeln('Oops! Something went wrong :(');
             $output->writeln($e);
