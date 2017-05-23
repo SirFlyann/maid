@@ -1,0 +1,22 @@
+{
+    "name": "mahezer/maid",
+    "description": "This package is made to make starting a new PrestaShop installation easier",
+    "type": "project",
+    "require": {
+        "symfony/console": "^3.2",
+        "czproject/git-php": "^3.9"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Mahezer Carvalho",
+            "email": "mahezer@bettacom.com.br"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Vendor\\Namespace\\": "",
+            "Maid\\Command\\": "Maid/Command/"
+        }
+    }
+}
