@@ -1,7 +1,7 @@
 #Maid
 
 ---
-![Alt text](https://staticdelivery.nexusmods.com/images/110/1207799-1336888570.jpg)
+![Alt text](http://www.magic4walls.com/wp-content/uploads/2016/04/warrior-woman-with-sword-and-shield-on-fire-background.jpg)
 
 ##  O que é
 
@@ -22,10 +22,9 @@ $ sudo cp maid/maid.phar /usr/local/bin/maid
 ## Comandos
 
 #### maid pull
-```sh
-$ maid pull
-```
-recebe três parâmetros:
+maid pull serve para clonar um repositório Git
+
+Pode receber três parâmetros:
 
 1. Url do repositório de origem (Obrigatório)
 2. Caminho do repositório (Opcional)
@@ -37,10 +36,9 @@ $ maid pull https://bitbucket.org/bettacommerce/lojabase-warehouse /var/www/html
 ```
 
 #### maid setup
-```sh
-$ maid setup
-```
-recebe quatro parâmetros:
+maid setup serve para criar as pastas necessárias de um projeto PrestaShop. Ele deve ser rodado na raiz do projeto.
+
+Recebe quatro parâmetros:
 
 1. Nome do banco de dados (Opcional). Padrão 'dbLojaBase'
 2. Nome do usuário do banco de dados (Opcional). Padrão: 'root'
@@ -49,6 +47,8 @@ recebe quatro parâmetros:
 
 Por exemplo:
 ```sh
+$ cd minha-loja
+
 $ maid setup dbMinhaLoja admin 1234 192.0.0.0
 ```
 
