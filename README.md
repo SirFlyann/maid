@@ -1,7 +1,7 @@
 #Maid
 
 ---
-![Alt text](http://www.magic4walls.com/wp-content/uploads/2016/04/warrior-woman-with-sword-and-shield-on-fire-background.jpg)
+![Alt text](http://3.bp.blogspot.com/-9w9oY1hohbw/T7u6OX2q_FI/AAAAAAAABlA/RC3KdvYCCpY/s1600/Chibi_Maid_2.jpg)
 
 ##  O que é
 
@@ -49,7 +49,7 @@ Por exemplo:
 ```sh
 $ cd minha-loja
 
-$ maid setup dbMinhaLoja admin 1234 192.0.0.0
+$ maid setup dbLojaBase root 123 localhost
 ```
 
 
