@@ -1,11 +1,7 @@
 #Maid
 
 ---
-<div style="text-align: center" markdown="1">
-
 ![Alt text](https://staticdelivery.nexusmods.com/images/110/1207799-1336888570.jpg)
-
-</div>
 
 ##  O que é
 
