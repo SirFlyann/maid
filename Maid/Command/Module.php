@@ -42,6 +42,42 @@ The second parameter is the model name');
             $path = getcwd();
             $modulePath = $path . '/' . strtolower($name);
             mkdir($modulePath);
+            mkdir($modulePath . '/config');
+            $configFile = $modulePath . '/config/' . $name . 'Config.php';
+            $file = fopen($configFile, 'w');
+            fwrite(
+                $file,
+                '<?php
+class ' . $name . 'Config
+{
+    /**
+     * Nome do módulo
+     *
+     * OBS: Ao alterar o nome do módulo deve-se alterar obrigatoriamente os itens abaixo:
+     *  1. Diretório do módulo em /modules/[nome-do-modulo]
+     *  2. Nome do arquivo do módulo em /modules/[nome-do-modulo]/nome-do-modulo.php
+     *  3. Nome das classes de Controllers
+     */
+    const name = \''. $name .' \';
+    /**
+     * Descrição do autor
+     */
+    const author = \'BettaCommerce Team \';
+    /**
+     * Descrição do módulo (Tela de módulos)
+     */
+    const displayName = \'\';
+    /**
+     * Descrição do módulo (Tela de módulos)
+     */
+    const description = \'\';
+    /**
+     * Mensagem de desinstalação
+     */
+    const uninstall_message = \'Tem certeza que deseja desinstalar este módulo?\';
+}'
+            );
+            fclose($file);
             $mainFile = $modulePath . '/' . strtolower($name) . '.php';
             $file = fopen($mainFile, 'w');
             fwrite(
@@ -51,21 +87,24 @@ if (!defined(\'_PS_VERSION_\')) {
     exit;
 }
 
+include_once dirname(__FILE__) . \'config/' . $name . 'Config.php\';
+
 '. $modelImport .'
 
 class ' . $name . ' extends Module
 {
     public function __construct()
     {
-        $this->name = \'' . strtolower($name) . '\';
+        $this->name = ' . $name . 'Config::name;
         $this->tab = \'\';
         $this->version = \'1.0\';
-        $this->author = \'BettaCommerce Team\';
+        $this->author = ' . $name . 'Config::author;
 
         parent::__construct();
 
-        $this->displayName = \'\';
-        $this->description = \'\';
+        $this->displayName = ' . $name . 'Config::displayName;
+        $this->description = ' . $name . 'Config::description;
+        $this->confirmUninstall = ' . $name . 'Config::uninstall_message;
         $this->ps_versions_compliancy = array(\'min\' => \'1.6.0.4\', \'max\' => \'1.6.99.99\');
     }
 
