@@ -6,13 +6,15 @@
 require __DIR__.'/vendor/autoload.php';
 
 use Maid\Command\Pull;
-use Maid\Command\Setup;
+use Maid\Command\Store;
+use Maid\Command\Module;
 use Symfony\Component\Console\Application;
 
 $application = new Application('Maid', '@package_version@');
 
 // ... register commands
 $application->add(new Pull());
-$application->add(new Setup());
+$application->add(new Store());
+$application->add(new Module());
 
 $application->run();

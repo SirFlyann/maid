@@ -7,12 +7,12 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class Setup extends Command
+class Store extends Command
 {
     protected function configure()
     {
         $this
-            ->setName('setup')
+            ->setName('setup:store')
             ->setDescription('Create the needed folders for a PrestaShop project')
             ->setHelp('This command allows you to setup a PrestaShop project.
 The first param is the database name.
@@ -60,9 +60,9 @@ define(\'_RIJNDAEL_IV_\', \'Tx6nAfFTO8QTOSMPqtx1kQ==\');
             mkdir($path . '/admin/import');
             mkdir($path . '/config/xml');
             mkdir($path . '/config/xml/themes');
-            $output->writeln('Setup finished! Happy coding!');
+            $output->writeln('Store setup finished! Happy coding!');
         } catch (\Exception $e) {
-            $output->writeln('Oops! Something went wrong :(');
+            $output->writeln('Unfortunately, I was not able to finish the task. Here\'s why: ');
             $output->writeln($e);
         }
     }

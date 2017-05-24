@@ -35,10 +35,10 @@ Por exemplo:
 $ maid pull https://bitbucket.org/bettacommerce/lojabase-warehouse /var/www/html/minha-loja https://bitbucket.org/bettacommerce/minha-loja
 ```
 
-#### maid setup
-maid setup serve para criar as pastas necessárias de um projeto PrestaShop. Ele deve ser rodado na raiz do projeto.
+#### maid setup:store
+maid setup:store serve para criar as pastas necessárias de um projeto PrestaShop. Ele deve ser rodado na raiz do projeto.
 
-Recebe quatro parâmetros:
+Pode receber quatro parâmetros:
 
 1. Nome do banco de dados (Opcional). Padrão 'dbLojaBase'
 2. Nome do usuário do banco de dados (Opcional). Padrão: 'root'
@@ -49,7 +49,20 @@ Por exemplo:
 ```sh
 $ cd minha-loja
 
-$ maid setup dbLojaBase root 123 localhost
+$ maid setup:store dbLojaBase root 123 localhost
+```
+
+#### maid setup:module
+maid setup:module serve para criar a estrutura de um novo módulo do PrestaShop.
+
+Pode receber dois parâmetros:
+
+1. Nome do módulo. Se este parâmetro não estiver em CamelCase, a primeira letra será capitalizada. (Obrigatório).
+2. Nome da model do módulo. (Opcional)
+
+Por exemplo:
+```sh
+$ maid setup:module MeuModulo ModuloModel
 ```
 
 

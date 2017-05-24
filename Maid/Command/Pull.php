@@ -46,7 +46,7 @@ class Pull extends Command
             }
             $output->writeln('Repository cloned successfully!');
         } catch (\Exception $e) {
-            $output->writeln('Oops! Something went wrong :(');
+            $output->writeln('Unfortunately, I was not able to finish the task. Hee\'s why: ');
             $output->writeln($e);
         }
     }
