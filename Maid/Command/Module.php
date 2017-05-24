@@ -31,8 +31,13 @@ The second parameter is the model name');
                 $model = null;
             }
             $name = $input->getArgument('name');
-            if (isNotCamelCase($name)) {
+            if ($this->isNotCamelCase($name)) {
                 $name = ucfirst($name);
+            }
+            if (!is_null($model)) {
+               $modelImport = 'include_once(_PS_MODULE_DIR_.\''. strtolower($name) . '/' . $model . '.php\');';
+            } else {
+                $modelImport = '';
             }
             $path = getcwd();
             $modulePath = $path . '/' . strtolower($name);
@@ -45,11 +50,8 @@ The second parameter is the model name');
 if (!defined(\'_PS_VERSION_\')) {
     exit;
 }
-'.
-    if (!is_null($model)) {
-        'include_once(_PS_MODULE_DIR_.\''. strtolower($name) . '/' . $model . '.php\');'
-    }
-.'
+
+'. $modelImport .'
 
 class ' . $name . ' extends Module
 {
@@ -91,7 +93,7 @@ class ' . $name . ' extends Module
             fclose($file);
 
             if (!is_null($model)) {
-                $modelFile = $modulePath . '/' . $model;
+                $modelFile = $modulePath . '/' . $model . '.php';
                 $file = fopen($modelFile, 'w');
                 fwrite(
                     $file,
@@ -134,7 +136,7 @@ class ' . $model . ' extends ObjectModel
             mkdir($modulePath . '/css');
             mkdir($modulePath . '/js');
             mkdir($modulePath . '/translations');
-            mkdir($modulePath . '/views'
+            mkdir($modulePath . '/views');
             mkdir($modulePath . '/views/templates');
             $output->writeln('Module setup finished! Happy coding!');
         } catch (\Exception $e) {
