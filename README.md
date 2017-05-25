@@ -35,6 +35,30 @@ Por exemplo:
 $ maid pull https://bitbucket.org/bettacommerce/lojabase-warehouse /var/www/html/minha-loja https://bitbucket.org/bettacommerce/minha-loja
 ```
 
+#### maid setup:vhost
+maid setup:vhost serve para criar virtual hosts
+
+Pode receber três parâmetros:
+
+1. Nome do virtual host (Obrigatório).
+2. Caminho da raiz do projeto (Opcional). Padrão: '/var/www/html/[nome do virtual host]'
+3. Caminho personalizado do apache (Opcional). Padrão: '/etc/apache2/sites-available/'
+
+Também pode receber estas opções:
+1. A opção --local (abreviação --l) serve para definir o domínio como .dev
+2. A opção --domain (abreviação --d) serve para definir qualquer outro domínio
+
+Se as duas opções forem utilizadas, o domínio será ".dev".
+
+Por exemplo:
+```sh
+$ maid setup:vhost teste --local
+```
+ou
+```sh
+$ maid setup:vhost teste --domain=bettacom.com.br
+```
+
 #### maid setup:store
 maid setup:store serve para criar as pastas necessárias de um projeto PrestaShop. Ele deve ser rodado na raiz do projeto.
 
