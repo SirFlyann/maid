@@ -9,6 +9,7 @@ use Maid\Command\Pull;
 use Maid\Command\Store;
 use Maid\Command\Module;
 use Maid\Command\Host;
+use Maid\Command\Dump;
 use Symfony\Component\Console\Application;
 
 $application = new Application('Maid', '@package_version@');
@@ -18,5 +19,5 @@ $application->add(new Pull());
 $application->add(new Store());
 $application->add(new Module());
 $application->add(new Host());
-
+$application->add(new Dump());
 $application->run();
