@@ -35,6 +35,55 @@ Por exemplo:
 $ maid pull https://bitbucket.org/bettacommerce/lojabase-warehouse /var/www/html/minha-loja https://bitbucket.org/bettacommerce/minha-loja
 ```
 
+#### maid make:database
+maid make:database serve para criar um novo banco de dados
+
+Pode receber quatro parâmetros:
+
+1. Nome do banco de dados (Obrigatório).
+2. Usuário do banco de dados (Opcional). Padrão: 'root'
+3. Senha do banco de dados (Opcional). Padrão: 123
+4. Servidor do banco de dados (Opcional). Padrão 'localhost'
+
+Por exemplo:
+```sh
+$ maid make:database dbTeste root 123 localhost
+```
+
+#### maid make:database
+maid run:dump serve para executar um dump sql em um banco de dados
+
+Pode receber cinco parâmetros:
+
+1. Caminho do dump (Obrigatório).
+2. Nome do banco de dados (Obrigatório).
+3. Usuário do banco de dados (Opcional). Padrão: 'root'
+4. Senha do banco de dados (Opcional). Padrão: 123
+5. Servidor do banco de dados (Opcional). Padrão 'localhost'
+
+Por exemplo:
+```sh
+$ maid run:dump /var/www/html/dump-dbTeste.sql dbTeste root 123 localhost
+```
+
+#### maid setup:database
+maid setup:database serve para criar um banco de dados e executar um dump sql nele
+
+Pode receber cinco parâmetros:
+
+1. Caminho do dump (Obrigatório).
+2. Nome do banco de dados (Obrigatório).
+3. Usuário do banco de dados (Opcional). Padrão: 'root'
+4. Senha do banco de dados (Opcional). Padrão: 123
+5. Servidor do banco de dados (Opcional). Padrão 'localhost'
+
+Por exemplo:
+```sh
+$ maid setup:database /var/www/html/dump-dbTeste.sql dbTeste root 123 localhost
+```
+
+maid setup:database é uma união dos comandos maid make:database e maid run:dump
+
 #### maid setup:vhost
 maid setup:vhost serve para criar virtual hosts
 
