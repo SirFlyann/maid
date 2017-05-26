@@ -10,14 +10,16 @@ use Maid\Command\Store;
 use Maid\Command\Module;
 use Maid\Command\Host;
 use Maid\Command\Dump;
+use Maid\Command\Create;
 use Symfony\Component\Console\Application;
 
 $application = new Application('Maid', '@package_version@');
 
 // ... register commands
 $application->add(new Pull());
+$application->add(new Create());
+$application->add(new Dump());
 $application->add(new Store());
 $application->add(new Module());
 $application->add(new Host());
-$application->add(new Dump());
 $application->run();
