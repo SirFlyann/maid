@@ -60,6 +60,7 @@ define(\'_RIJNDAEL_IV_\', \'Tx6nAfFTO8QTOSMPqtx1kQ==\');
             mkdir($path . '/admin/import');
             mkdir($path . '/config/xml');
             mkdir($path . '/config/xml/themes');
+            exec('sudo chmod 777 -R ' . $path);
             $output->writeln('Store setup finished! Happy coding!');
         } catch (\Exception $e) {
             $output->writeln('Unfortunately, I was not able to finish the task. Here\'s why: ');
