@@ -31,11 +31,9 @@ class Create extends Command
 
             $connection = new \mysqli($dbhost, $dbuser, $dbpass);
 
-            $sql = 'CREATE DATABASE "' . $dbname . '" CHARACTER SET utf8 COLLATE utf8_general_ci';
+            $sql = 'CREATE DATABASE ' . $dbname . ' CHARACTER SET utf8 COLLATE utf8_general_ci';
 
-            if ($connection->query($sql)) {
-                $output->writeln('Database created successfuly! Happy coding!');
-            } else {
+            if (!$connection->query($sql)) {
                 $output->writeln($connection->error);
             }
 
