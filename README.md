@@ -11,7 +11,7 @@ Maid é uma CLI que irá facilitar a criação de uma loja com PrestaShop a part
 
 1. Clone este repositório utilizando:
 ```sh
-$ git clone https://bitbucket.org/bettacommerce/maid
+$ git clone https://github.com/SirFlyann/maid
 ```
 
 2. Copie o arquivo maid.phar para que ele possa ser acessado de qualquer lugar
@@ -29,11 +29,6 @@ Pode receber três parâmetros:
 1. Url do repositório de origem (Obrigatório)
 2. Caminho do repositório (Opcional)
 3. Url do repositório para onde a nova loja vai apontar (Opcional)
-
-Por exemplo:
-```sh
-$ maid pull https://bitbucket.org/bettacommerce/lojabase-warehouse /var/www/html/minha-loja https://bitbucket.org/bettacommerce/minha-loja
-```
 
 #### maid make:database
 maid make:database serve para criar um novo banco de dados
@@ -105,7 +100,7 @@ $ maid setup:vhost teste --local
 ```
 ou
 ```sh
-$ maid setup:vhost teste --domain=bettacom.com.br
+$ maid setup:vhost teste --domain=meusite.com.br
 ```
 
 #### maid setup:store
@@ -139,4 +134,4 @@ $ maid setup:module MeuModulo ModuloModel
 ```
 
 
-Copyright (c) 2017 BettaCommerce
+Copyright (c) 2017 Mahezer Carvalho
