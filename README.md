@@ -135,5 +135,5 @@ $ maid setup:module MeuModulo ModuloModel
 
 ## License
 
-(WTFPL)[http://www.wtfpl.net]
+[WTFPL](http://www.wtfpl.net)
 
