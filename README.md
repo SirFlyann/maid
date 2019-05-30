@@ -1,4 +1,4 @@
-#Maid
+# Maid
 
 ---
 ![Alt text](http://3.bp.blogspot.com/-9w9oY1hohbw/T7u6OX2q_FI/AAAAAAAABlA/RC3KdvYCCpY/s1600/Chibi_Maid_2.jpg)
@@ -133,5 +133,7 @@ Por exemplo:
 $ maid setup:module MeuModulo ModuloModel
 ```
 
+## License
 
-Copyright (c) 2017 Mahezer Carvalho
+(WTFPL)[http://www.wtfpl.net]
+
